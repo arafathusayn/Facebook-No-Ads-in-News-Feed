@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Facebook - No Ads in News Feed",
+  "short_name": "facebook-no-ads",
+  "version": "1.0.1",
+
+  "description": "It hides all sponsored ads namely Suggested Post or Suggested Page in News Feed on Facebook.",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["index.js"],
+			"run_at": "document_start"
+    }
+  ]
+
+}
