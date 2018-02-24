@@ -27,33 +27,45 @@
       document.querySelector("#GroupsRHCSuggestionSection").style.display = "none";
     }
 	}
+
+	function deferredHider(timeoutId) {
+		hideAds();
+		clearTimeout(timeoutId);
+	}
 	
 	var MutationObserver = window.MutationObserver || window.webKitMutationObserver || window.MozMutationObserver;
 	var container = document.documentElement || document.body;
 	var observer = new MutationObserver(function(mutations) {
-		mutations.forEach(function(mutation) {
-			hideAds();
-		});    
+		var timeoutId4 = setTimeout(function() {
+			deferredHider(timeoutId4);
+		}, 1);    
 	});
-	var config = { attributes: true, childList: true};
+	var config = { attributes: false, childList: true, subtree: true };
 	observer.observe(container, config);
 
 	document.addEventListener("load", function(event) {
 		hideAds();
 		hideAdsOnSides();
+		var timeoutId = setTimeout(function() {
+			deferredHider(timeoutId);
+		}, 100);
+
   }, { passive: true });
 	
 	document.addEventListener("DOMContentLoaded", function(event) {
 		hideAds();
 		hideAdsOnSides();
+		var timeoutId2 = setTimeout(function() {
+			deferredHider(timeoutId2);
+		}, 100);
   }, { passive: true });
 	
 	container.addEventListener("click", function(event) {
     hideAds();
   }, { passive: true });
-	
-	window.addEventListener("scroll", function() {
-    hideAds();
-  }, { passive: true });
+
+  var timeoutId3 = setTimeout(function() {
+		deferredHider(timeoutId3);
+	}, 1000);
 	
 })();
