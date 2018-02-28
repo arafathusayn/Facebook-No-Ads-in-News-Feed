@@ -8,7 +8,7 @@
 				for ( anySpan of spans ) {
 						if( anySpan.querySelector('a') ) {
 								if ( anySpan.querySelector('a').href.replace(window.location.href, '') === '#'
-								&& /spon.?sored/gi.test(anySpan.innerText) ) {
+								&& /s.?p.?o.?n.?s.?o.?r.?e.?d/gi.test(anySpan.innerText) ) {
 										var p = anySpan.closest('[data-testid="fbfeed_story"]');
 										if ( p.style.display !== "none" ) {
 											p.style.display = "none";
