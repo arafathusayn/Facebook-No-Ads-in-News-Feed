@@ -1,6 +1,30 @@
 (function() {
   function hideAds() {
     var feeds = document.querySelectorAll('[data-testid="fbfeed_story"]');
+
+    if (feeds.length === 0) {
+      var links = document.querySelectorAll('a[href*="/ads/"]');
+
+      for (var link of links) {
+        if (/s.?p.?o.?n.?s.?o.?r.?e.?d/gi.test(link.innerText)) {
+          var child = link.parentElement;
+          var parent = link.parentElement.parentElement;
+
+          for (var i = 0; i < 500; i++) {
+            if (parent.getAttribute("role") === "feed") {
+              console.log("Removing Ad");
+              console.log(child);
+              child.remove();
+              break;
+            } else {
+              child = parent;
+              parent = parent.parentElement;
+            }
+          }
+        }
+      }
+    }
+
     for (feed of feeds) {
       var links = feed.querySelectorAll("div a");
       for (link of links) {
